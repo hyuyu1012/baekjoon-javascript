@@ -1,19 +1,20 @@
-const fs = require('fs');
-const init = fs.readFileSync(0).toString().split("\n");
+// 롤링 해시와 모듈러 곱의 성질
 
-const L = Number(init[0]);
-const str = init[1].split("");
+const fs = require('fs');
+const input = fs.readFileSync(0).toString().trim().split('\n');
+
+const L = Number(input[0]);
+const str = input[1];
 const r = 31;
 const M = 1234567891;
-let sum = 0
-let result = 0
 
+let result = 0;
+let pow = 1;
 
 for (let i = 0; i < L; i++) {
-  const temp = (str[i].charCodeAt()-96) * (r ** i);
-  sum = sum + temp;
+  const charValue = str[i].charCodeAt() - 96;
+  result = (result + (charValue * pow) % M) % M;
+  pow = (pow * r) % M;
 }
-
-result = sum % M;
 
 console.log(result);
