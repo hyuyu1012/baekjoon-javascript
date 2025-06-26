@@ -1,8 +1,8 @@
-// 초기화
 const fs = require('fs');
 const init = fs.readFileSync(0).toString().trim().split("\n");
 const arr = init[1].split(" ").map(Number).sort((a,b) => a-b);
 const findNumbers = init[3].split(" ").map(Number);
+const result = [];
 
 function binarySearch(arr, number, low, mid, high) {
   if(low > high) {
@@ -25,5 +25,7 @@ function binarySearch(arr, number, low, mid, high) {
 }
 
 findNumbers.forEach((number) => {
-  console.log(binarySearch(arr, number, 0, Math.trunc((arr.length-1) /2), arr.length-1));
+  result.push(binarySearch(arr, number, 0, Math.trunc((arr.length-1) /2), arr.length-1));
 })
+
+console.log(result.join("\n"));
