@@ -10,11 +10,12 @@ const visited = new Array(N).fill(false);
 const dfs = (n, arr) => {
   if(n === M) {
     result.push(arr.join(" "));
+    return;
   }
   for(let i = 0; i < N; i++) {
     if(visited[i] === false) {
       visited[i] = true;
-      arr.push([array[i]]);
+      arr.push(array[i]);
       dfs(n+1, arr);
       arr.pop();
       visited[i] = false;
