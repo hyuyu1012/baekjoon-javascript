@@ -1,4 +1,4 @@
-const str = `     /~\\
+console.log(`     /~\\
     ( oo|
     _\\=/_
    /  _  \\
@@ -7,6 +7,4 @@ const str = `     /~\\
 ============
 |          |
 |          |
-|          |`
-
-console.log(str);
+|          |`);
