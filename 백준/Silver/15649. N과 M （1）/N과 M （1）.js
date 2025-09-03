@@ -1,29 +1,25 @@
 const fs = require('fs');
 const [N,M] = fs.readFileSync(0).toString().split(" ").map(Number);
 
+const visited = new Array(N).fill(false);
 const ansArray = [];
-const visited = new Array(N+1).fill(0);
 
-const dfs = (n, arr) => {
-  if( n===M ) {
-    ansArray.push([...arr]);
+function dfs(n, arr) {
+  if(n === M) {
+    ansArray.push(arr.join(" "));
     return;
   }
-  for(let j = 1; j < N+1; j++) {
-   if(visited[j] === 0) { 
-    visited[j] = 1;
-    arr.push(j);
-    dfs(n+1, arr);
-    arr.pop();    
-    visited[j] = 0;
-   } 
+
+  for(let i = 1; i <= N; i++) {
+    if(!visited[i]) {
+      visited[i] = true;
+      arr.push(i);
+      dfs(n+1, arr);
+      arr.pop();
+      visited[i] = false; 
+    }
   }
 }
 
 dfs(0, []);
-
-ansArray.forEach((s, index) => {
-  ansArray[index] = s.join(" ");
-})
-
 console.log(ansArray.join("\n"));
