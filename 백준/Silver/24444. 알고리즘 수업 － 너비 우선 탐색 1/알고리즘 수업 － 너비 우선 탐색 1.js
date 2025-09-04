@@ -3,8 +3,25 @@ const input = fs.readFileSync(0).toString().trim().split("\n");
 
 const answer = [];
 
+class Queue {
+  constructor() {
+    this.head = 0;
+    this.data = [];
+  }
+  push(data) {
+    this.data.push(data);
+  }
+  shift() {
+    const node = this.data[this.head++];
+    return node;
+  }
+  get length() {
+    return this.data.length - this.head;
+  }  
+}
+
 function bfs(V) {
-  const queue = [];
+  const queue = new Queue();
   queue.push(V);
   let count = 1;
   const visited = new Array(N+1).fill(0);
