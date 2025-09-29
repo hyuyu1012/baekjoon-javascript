@@ -12,7 +12,7 @@ dp[0] = 0;
 
 for(let i = 1; i < n; i++) {
   const temp = array[i];
-  dp[i] = Math.max(temp-max, temp-min, dp[i-1]);
+  dp[i] = Math.max(temp-min, dp[i-1]);
   if(temp > max) max = temp;
   if(min > temp) min = temp;
 }
